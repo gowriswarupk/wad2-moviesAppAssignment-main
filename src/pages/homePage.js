@@ -4,9 +4,14 @@ import { useQuery } from 'react-query'
 import Spinner from '../components/spinner'
 import {getMovies} from '../api/tmdb-api'
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import {useState} from "react"
+import { Pagination, PaginationItem } from "@mui/material";
+import Typography from "@mui/material/Typography";
+
 
 const HomePage = (props) => {
-    const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
+    const [page, setPage] = useState(1);
+    const {data, error, isLoading, isError }  = useQuery(['discover',page], getMovies)
 
   if (isLoading) {
     return <Spinner />
@@ -23,13 +28,13 @@ const HomePage = (props) => {
   const addToFavorites = (movieId) => true 
 
   return (
-    <PageTemplate
+    <><PageTemplate
       title="Discover Movies"
       movies={movies}
       action={(movie) => {
-        return <AddToFavoritesIcon movie={movie} />
-      }}
-    />
+        return <AddToFavoritesIcon movie={movie} />;
+      } } /><Typography>Page: {page}</Typography>
+      <Pagination count={10} page={page} onChange={(event, newPageNum) => setPage(newPageNum)} /></>
 );
 };
 
