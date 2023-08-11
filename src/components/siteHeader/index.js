@@ -41,7 +41,7 @@ const SiteHeader = ({ history }) => {
     { label: "Now Playing", path: "/movies/nowPlaying" },
     { label: "Trending", path: "/movies/trending" },
     { label: "Upcoming", path: "/movies/upcoming" },
-    { label: "Popular Actors", path: "/person/popular" }
+    { label: "Popular Actors", path: "/popular_actors" }
   ];
 
   const handleMenuSelect = (pageURL) => {
@@ -57,7 +57,7 @@ const SiteHeader = ({ history }) => {
       <AppBar position="fixed" color="secondary">
         <Toolbar>
           <Typography variant="h4" className={classes.title}>
-            TMDB Client
+            NOTFLIX MOVIE DB
           </Typography>
           <Typography variant="h6" className={classes.title}>
             All you ever wanted to know about Movies!

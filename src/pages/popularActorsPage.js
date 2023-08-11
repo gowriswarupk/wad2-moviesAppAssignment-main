@@ -1,37 +1,29 @@
-import React from "react";
-import PageTemplate from "../components/templateActorsPage";
+import React, { useState, useEffect } from "react";
+import PageTemplate from "../components/popularActorsTemplateListPage";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import { getPopularActors } from "../api/tmdb-api";
 import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
-const PopularActorsPage = (props) => {
-  const { data, error, isLoading, isError } = useQuery(
-    "popularActors",
-    getPopularActors
-  );
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+import { getActors } from "../api/tmdb-api";
 
-  if (isError) {
-    return <h1>{error.message}</h1>;
-  }
-  const movies = data.results;
+const HomePage = (props) => {
+  const [actors, setActors] = useState([]);
 
-  const favorites = movies.filter((m) => m.favorite);
-  localStorage.setItem("favorites", JSON.stringify(favorites));
-  const AddToFavoritesIcon = (movieId) => true;
+
+  useEffect(() => {
+    getActors().then(a => {
+        console.log(a)
+      setActors(a);
+    });
+  }, []);
+
   return (
     <PageTemplate
       title="POPULAR ACTORS"
-      popularActors={getPopularActors}
-      action={(popularActors) => {
-        return <AddToFavoritesIcon popularActors={popularActors} />;
-      }}
+      actors={actors}
     />
   );
 };
-
-export default PopularActorsPage;
+export default HomePage;

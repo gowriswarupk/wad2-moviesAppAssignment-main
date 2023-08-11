@@ -118,9 +118,9 @@ const App = () => {
                 component={UpcomingMoviesPage}
               />
               <Route
-                exact
-                path="/person/popular"
-                component={PopularActorsPage}
+               exact 
+               path="/popular_actors" 
+               component={PopularActorsPage} 
               />
               <Route path="/movies/:id" component={MoviePage} />
               <Route path="/login" component={LoginPage} />

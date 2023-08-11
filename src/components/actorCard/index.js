@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -8,60 +8,46 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
-import StarRateIcon from "@material-ui/icons/StarRate";
+import TrendingUp from "@material-ui/icons/TrendingUp";
 import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
-import img from "../../images/film-poster-placeholder.png";
+import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
-import { ActorsContext } from "../../contexts/actorsContext";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
   media: { height: 500 },
   avatar: {
-    backgroundColor: "rgb(255, 0, 0)"
-  }
+    backgroundColor: "rgb(255, 0, 0)",
+  },
 });
 
-export default function MovieCard({ actor, action }) {
+export default function ActorCard(props) {
   const classes = useStyles();
-  const { favorites, addToFavorites } = useContext(ActorsContext);
-
-  if (favorites.find((id) => id === actor.id)) {
-    actor.favorite = true;
-  } else {
-    actor.favorite = false;
-  }
-
+  const actor = props.actor;
+  console.log(actor)
   const handleAddToFavorite = (e) => {
     e.preventDefault();
-    addToFavorites(actor);
+    props.selectFavorite(actor.id);
   };
 
   return (
     <Card className={classes.card}>
       <CardHeader
-        className={classes.header}
-        avatar={
-          actor.favorite ? (
-            <Avatar className={classes.avatar}>
-              <FavoriteIcon />
-            </Avatar>
-          ) : null
-        }
-        title={
-          <Typography variant="h5" component="p">
-            {actor.title}{" "}
-          </Typography>
-        }
-      />{" "}
+      className={classes.header}
+
+      title={
+        <Typography variant="h5" component="p">
+          {actor.name}{" "}
+        </Typography>
+      }
+    />
       <CardMedia
         className={classes.media}
         image={
-          actor.poster_path
-            ? `https://image.tmdb.org/t/p/w500/${actor.poster_path}`
+          actor.profile_path
+            ? `https://image.tmdb.org/t/p/w500/${actor.profile_path}`
             : img
         }
       />
@@ -69,22 +55,17 @@ export default function MovieCard({ actor, action }) {
         <Grid container>
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
-              <CalendarIcon fontSize="small" />
-              {actor.release_date}
-            </Typography>
-          </Grid>
-          <Grid item xs={6}>
-            <Typography variant="h6" component="p">
-              <StarRateIcon fontSize="small" />
-              {"  "} {actor.vote_average}{" "}
+              <TrendingUp fontSize="small" />
+              {"  "} {actor.popularity}{" "}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        {action(actor)}
-
-        <Link to={`/movies/${actor.id}`}>
+      <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
+        <FavoriteIcon color="primary" fontSize="large" />
+    </IconButton>
+        <Link to={`/actors/${actor.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
           </Button>
