@@ -18,6 +18,10 @@ import NowPlayingMoviesPage from "./pages/nowPlayingMoviesPage";
 import TrendingMoviesPage from "./pages/trendingMoviesPage";
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+
 import LoginPage from "./pages/loginPage"; //NEW
 import SignUpPage from "./pages/signUpPage"; //NEW
 
@@ -73,11 +77,40 @@ const Auth0ProviderWithRedirectCallback = ({ children, ...props }) => {
   );
 };
 
+export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+
+
 const App = () => {
+  const [mode, setMode] = React.useState('light');
+
+
+const colorMode = React.useMemo(
+  () => ({
+    toggleColorMode: () => {
+      setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    },
+  }),
+  [],
+);
+
+const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+        },
+      }),
+    [mode],
+  );
+
+
   return (
     <Auth0ProviderWithRedirectCallback {...authProviderConfig}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+        <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+            <CssBaseline /> 
           <SiteHeader />
           <MoviesContextProvider>
             {" "}
@@ -128,7 +161,9 @@ const App = () => {
               <Route exact path="/" component={HomePage} />
               <Redirect from="*" to="/" />
             </Switch>
-          </MoviesContextProvider>
+            </MoviesContextProvider>
+          </ThemeProvider>
+        </ColorModeContext.Provider>
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
