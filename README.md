@@ -6,7 +6,6 @@ Name: Gowriswarup Kailas Perumal
 
 ...... A bullet-point list of the ADDITIONAL features you have implemented in the API **THAT WERE NOT IN THE LABS** ......,
 
---Update---
 
 Working Auth0 Functionality with private favourites (protected) link. Fully functional.
 
@@ -14,8 +13,10 @@ Working Auth0 Functionality with private favourites (protected) link. Fully func
 
 - Feature 1 - .... Database Integration with MongoDB .....
 - Feature 2 - .... API routes with connection to auth ...
-- Feature 3 = ... Authentication ...
-
+- Feature 3 = ... Authentication with Auth0...
+- Feature 4 = ... Protected routes ...
+- Feature 5 = ... Pagination ...
+- Feature 6 = ... Dark Mode implementation ...
 ## Installation Requirements
 
 After cloning the repo, :-
@@ -32,10 +33,16 @@ REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON G
 NODE_ENV=development
 PORT=8080
 HOST=localhost
-MONGO_DB=-DatabaseURL-
+MONGO_DB=mongodb+srv://<username>:<password>@url
 SEED_DB=True
 SECRET= -JWTSecret-
 TMDB_KEY= -TMDBKEY-
+REACT_APP_TMDB_KEY= -REACTAPPTMDBKEY-
+REACT_APP_AUTH_DOMAIN= -REACTAPPAUTHDOMAIN-
+REACT_APP_AUTH_CLIENT_ID= -REACTAPPAUTHCLIENTID-
+REACT_APP_AUTH_AUDIENCE=
+REACT_APP_AUTH_CLIENT_SECRET= -REACTAPPAUTHCLIENTSECRET-
+
 
 ## API Design
 
