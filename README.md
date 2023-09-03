@@ -25,6 +25,18 @@ run 'npm install'
 
 Collect your API key from TMDB, and change the API key in '.env' file of the code. You should change you API key at this line of code -> 'REACT_APP_TMDB_KEY'. at React App and over in Movie_Api -> 'TMDB_KEY'.
 
+##TROUBLESHOOTING:
+
+in a couple of fresh runs, it was noted that the npm install command does not fully carry out the required installs, therefore, it is best. to check the output in case of errors and complete the installs manually. Common commands required are listed below:
+
+```
+npm install @mui/icons-material --force       
+npm install @mui/material @emotion/react @emotion/styled --force
+```
+MongoDB integration: If using MongoDB Atlas, requires link to db, with username and password info updated as shown below. 
+
+Auth0 integration: With a free account, from the settings page, within Application info for this session, the following info is also required for the .env file:  AUTH_DOMAIN, AUTH_CLIENT_ID and REACT_APP_AUTH_CLIENT_SECRET
+
 ## API Configuration
 
 Describe any configuration that needs to take place before running the API. For example, creating an `.env` and what variables to put in it. Give an example of how this might be structured/done.
@@ -60,6 +72,39 @@ If you have your API design on an online platform or graphic, please link to it 
 ## Security and Authentication
 
 Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
+
+
+## Screenshots
+<img width="1213" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/0c9d10eb-7bdd-448f-a769-1b76b8e1d0d3">
+Upload db successful
+
+<img width="1680" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/8d638eb6-6ee0-483f-9e60-c2a3f0392e0c">
+Movie App running on port 3000 simultaneously
+
+<img width="1680" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/22ecf5c2-3818-4ea0-bf79-637565b6fe6e">
+Movie App homepage
+
+<img width="606" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/703dc5ea-2133-49e8-952b-27c4ce8168bb">
+Pagination in focus
+
+<img width="1680" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/2c90e8ee-3787-419e-8ec9-6d2a677264d7">
+Dark theme in focus
+
+<img width="1680" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/642d2cf6-aaec-4583-bf98-408a51424950">
+Protected route redirect when not logged in
+
+<img width="432" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/6799559b-7e55-4ab5-a616-e01c127d0013">
+Login Popup - Auth0
+
+<img width="1680" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/90d9dd59-d308-405b-97d8-92ba227a6b84">
+Favorites Page (with couple of movies selected)
+
+<img width="1680" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/b7e80b1e-19ee-4400-9c96-924f503f588d">
+Add a review page in focus
+
+<img width="1680" alt="image" src="https://github.com/gowriswarupk/wad2-moviesAppAssignment-main/assets/58232821/bc09491e-3930-49bb-869f-bf9babedcfef">
+Movies info in focus
+
 
 ## Integrating with React App
 
