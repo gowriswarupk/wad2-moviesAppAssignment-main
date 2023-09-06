@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import PageTemplate from "../components/popularActorsTemplateListPage";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
-import { getPopularActors } from "../api/tmdb-api";
+import { getPopularActors } from "../api/movie-api";
 import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
 
 
-import { getActors } from "../api/tmdb-api";
+import { getActors } from "../api/movie-api";
 
 const HomePage = (props) => {
   const [actors, setActors] = useState([]);

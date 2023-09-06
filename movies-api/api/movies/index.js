@@ -11,23 +11,25 @@ import {
 const router = express.Router(); 
 
 router.get('/', asyncHandler(async (req, res) => {
+  const movies = await movieModel.find();
+  res.status(200).json(movies);
+
     let { page = 1, limit = 10 } = req.query; // destructure page and limit and set default values
     [page, limit] = [+page, +limit]; //trick to convert to numeric (req.query will contain string values)
 
-    const totalDocumentsPromise = movieModel.estimatedDocumentCount(); //Kick off async calls
-    const moviesPromise = movieModel.find().limit(limit).skip((page - 1) * limit);
+    // const totalDocumentsPromise = movieModel.estimatedDocumentCount(); //Kick off async calls
+    // const moviesPromise = movieModel.find().limit(limit).skip((page - 1) * limit);
 
-    const totalDocuments = await totalDocumentsPromise; //wait for the above promises to be fulfilled
-    const movies = await moviesPromise;
+    // const totalDocuments = await totalDocumentsPromise; //wait for the above promises to be fulfilled
+    // const movies = await moviesPromise;
 
-    const returnObject = { page: page, total_pages: Math.ceil(totalDocuments / limit), total_results: totalDocuments, results: movies };//construct return Object and insert into response object
+    // const returnObject = { page: page, total_pages: Math.ceil(totalDocuments / limit), total_results: totalDocuments, results: movies };//construct return Object and insert into response object
 
-    res.status(200).json(returnObject);
+    // res.status(200).json(returnObject);
 }));
 
 
 
-// Get movie details
 // Get movie details
 router.get('/:id', asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id);
@@ -53,6 +55,20 @@ router.get('/:id/reviews', (req, res) => {
     }
 });
 
+// Get movie details
+router.get('/:id/details', (req, res) => {
+    const id = parseInt(req.params.id);
+    // find reviews in list
+    if (movieDetails.id == id) {
+        res.status(200).json(movieDetails);
+    } else {
+        res.status(404).json({
+            message: 'The resource you requested could not be found.',
+            status_code: 404
+        });
+    }
+});
+
 //Post a movie review
 router.post('/:id/reviews', (req, res) => {
     const id = parseInt(req.params.id);
@@ -62,6 +78,24 @@ router.post('/:id/reviews', (req, res) => {
         req.body.updated_at = new Date();
         req.body.id = uniqid();
         movieReviews.results.push(req.body); //push the new review onto the list
+        res.status(201).json(req.body);
+    } else {
+        res.status(404).json({
+            message: 'The resource you requested could not be found.',
+            status_code: 404
+        });
+    }
+});
+
+//Post a movie
+router.post('/', (req, res) => {
+    const id = parseInt(req.params.id);
+
+    if (movies.id == id) {
+        req.body.created_at = new Date();
+        req.body.updated_at = new Date();
+        req.body.id = uniqid();
+        movies.results.push(req.body); //push the new movie onto the list
         res.status(201).json(req.body);
     } else {
         res.status(404).json({

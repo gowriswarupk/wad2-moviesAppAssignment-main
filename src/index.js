@@ -18,6 +18,9 @@ import NowPlayingMoviesPage from "./pages/nowPlayingMoviesPage";
 import TrendingMoviesPage from "./pages/trendingMoviesPage";
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
 
+import TvsPage from "./pages/tvsPage";
+
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
@@ -154,6 +157,11 @@ const theme = React.useMemo(
                exact 
                path="/popular_actors" 
                component={PopularActorsPage} 
+              />
+              <Route
+               exact 
+               path="/tvs" 
+               component={TvsPage} 
               />
               <Route path="/movies/:id" component={MoviePage} />
               <Route path="/login" component={LoginPage} />

@@ -9,15 +9,16 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
-    "@mui/icons-material": "^5.14.7",
-    "@mui/material": "^5.14.7",
+    "@mui/icons-material": "^5.14.8",
+    "@mui/material": "^5.14.8",
+    "http-proxy-middleware": "^2.0.6",
     "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^3.29.4",
     "react-query": "^3.13.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1"
+    "react-scripts": "^5.0.1"
   },
   "scripts": {
     "storybook": "start-storybook -p 6006 -s public",
@@ -50,8 +51,7 @@
     "@storybook/addon-actions": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/node-logger": "^6.2.9",
-    "@storybook/preset-create-react-app": "^3.1.7",
+    "@storybook/preset-create-react-app": "^7.4.0",
     "@storybook/react": "^6.2.9"
-  },
-  "proxy": "http://localhost:8080"
+  }
 }
