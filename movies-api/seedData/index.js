@@ -3,7 +3,14 @@ import users from "./users";
 import dotenv from "dotenv";
 import genres from "./genres";
 import movieModel from "../api/movies/movieModel";
+import tvModel from "../api/tvs/tvModel";
+import actorModel from "../api/actors/actorModel";
+
 import movies from "./movies.js";
+import tvs from "./tvs.js";
+import actors from "./actors.js";
+
+
 
 dotenv.config();
 
@@ -44,8 +51,38 @@ export async function loadMovies() {
   }
 }
 
+// deletes all tv documents in collection and inserts test data
+export async function loadTvs() {
+  console.log("load seed data");
+  console.log(tvs.length);
+  try {
+    await tvModel.deleteMany();
+    await tvModel.collection.insertMany(tvs);
+    console.info(`${tvs.length} TVs were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load TV Data: ${err}`);
+  }
+}
+
+
+// deletes all Actor documents in collection and inserts test data
+export async function loadActors() {
+  console.log("load seed data");
+  console.log(actors.length);
+  try {
+    await actorModel.deleteMany();
+    await actorModel.collection.insertMany(actors);
+    console.info(`${actors.length} Actors were successfully stored.`);
+  } catch (err) {
+    console.error(`failed to Load Actor Data: ${err}`);
+  }
+}
+
+
 if (process.env.SEED_DB) {
   loadUsers();
-  loadGenres(); //you may not need this line if you skipped the exercises
-  loadMovies(); //ADD THIS LINE
+  loadGenres();
+  loadMovies();
+  loadActors();
+  loadTvs(); 
 }
